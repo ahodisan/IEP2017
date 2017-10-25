@@ -18,9 +18,10 @@
 
 #include <bcm2835.h>
 #include <stdio.h>
-
+#include <pin.h>
 // Blinks on RPi Plug P1 pin 11 (which is GPIO pin 17)
 #define PIN RPI_GPIO_P1_11
+
 
 //Implementați clasa Pin care să conțină numărul pinului, direcția,
 //starea de pull-up (în caz ca e pin de input), și metode pentru get,
@@ -31,6 +32,10 @@
 
 int main(int argc, char **argv)
 {
+
+    //Instantiate new Pin
+    Pin *pin11 = NULL;
+    pin11 = new Pin(PIN, 0, -1);
     // If you call this, it will not actually access the GPIO
     // Use for testing
     bcm2835_set_debug(1);
@@ -42,14 +47,14 @@ int main(int argc, char **argv)
     while (1)
     {
         // Turn it on
-        bcm2835_gpio_write(PIN, HIGH);
-
+        //bcm2835_gpio_write(PIN, HIGH);
+        pin11->set(1);
         // wait a bit
         bcm2835_delay(500);
 
         // turn it off
-        bcm2835_gpio_write(PIN, LOW);
-
+        //bcm2835_gpio_write(PIN, LOW);
+        pin11->set(0);
         // wait a bit
         bcm2835_delay(500);
     }
