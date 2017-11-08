@@ -11,7 +11,8 @@ TEMPLATE = app
 
 SOURCES += main.cpp \
     bcm2835_stub.cpp \
-    pin.cpp
+    pin.cpp \
+    pwm.cpp
 
 HEADERS += \
     bcm2835.h \

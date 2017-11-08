@@ -19,7 +19,6 @@
 // $Id: RF22.h,v 1.21 2012/05/30 01:51:25 mikem Exp $
 #include <bcm2835.h>
 #include <stdio.h>
-#include <pin.h>
 // PWM output on RPi Plug P1 pin 12 (which is GPIO pin 18)
 // in alt fun 5.
 // Note that this is the _only_ PWM pin available on the RPi IO headers
@@ -28,11 +27,18 @@
 #define PWM_CHANNEL 0
 // This controls the max range of the PWM signal
 #define RANGE 1024
+
 int main(int argc, char **argv)
 {
+
     bcm2835_set_debug(1);
     if (!bcm2835_init())
         return 1;
+
+    //Instantiate new Pin
+    Pin *pin12 = NULL;
+    pin12 = new Pin(PIN, 1, 0);  //input pin;
+
     // Set the output pin to Alt Fun 5, to allow PWM channel 0 to be output there
     bcm2835_gpio_fsel(PIN, BCM2835_GPIO_FSEL_ALT5);
     // Clock divider is set to 16.

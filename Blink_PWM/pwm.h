@@ -1,14 +1,16 @@
-#ifndef PWM_H
-#define PWM_H
+#ifndef PWMM_H
+#define PWMM_H
+#include<stdint.h>
 
-class Pwm
+class PWMM
 {
 public:
-    Pwm();  //starea - for input pins (pull-up)
-    void set();
-    int get();
-protected:
-
+    PWMM(int freq, int fact_umplere);
+    int freq;
+    int fact_umplere;
+    int getFreq();
+    int getFactUmplere();
+    void set(int freq, int duty_cycle);
 };
 
-#endif // PWM_H
+#endif // PWMM_H
